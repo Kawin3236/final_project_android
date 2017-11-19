@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ListView lv;
     private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
-    private ImageView addPost;
+    //private ImageView addPost;
     private Detail detail;
     private Button btnSearch;
 
@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        addPost = rootView.findViewById(R.id.addPost);
+        //addPost = rootView.findViewById(R.id.addPost);
         btnSearch = rootView.findViewById(R.id.btnSearch);
 
         imgList = new ArrayList<>();
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
             }
         });
-        addPost.setOnClickListener(this);
+       // addPost.setOnClickListener(this);
         btnSearch.setOnClickListener(this);
         return rootView;
     }
@@ -98,9 +98,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (addPost.getId() == view.getId()) {
-            goToFragment(PostFragment.newInstance());
-        } else if (btnSearch.getId() == view.getId()) {
+//        if (addPost.getId() == view.getId()) {
+//            goToFragment(PostFragment.newInstance());
+//        } else
+            if (btnSearch.getId() == view.getId()) {
             goToFragment(SearchFragment.newInstance());
         }
     }

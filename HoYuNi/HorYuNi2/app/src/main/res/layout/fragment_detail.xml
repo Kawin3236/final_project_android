@@ -69,32 +69,32 @@
             <ImageView
                 android:id="@+id/imageDetail2"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/imageDetail3"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop" />
 
 
             <ImageView
                 android:id="@+id/imageDetail4"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/imageDetail5"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/imageDetail6"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>

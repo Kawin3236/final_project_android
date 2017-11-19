@@ -11,7 +11,7 @@
         android:layout_height="48dp"
         android:text="ค้นหา"
         android:id="@+id/btnSearch"
-        android:background="#efd808"
+        android:background="#F2E9E1"
         tools:layout_constraintRight_creator="0"
         tools:layout_constraintBottom_creator="0"
         app:layout_constraintBottom_toTopOf="@+id/listViewImage"
@@ -35,17 +35,7 @@
         tools:layout_constraintRight_creator="0"
         tools:layout_constraintTop_creator="0" />
 
-    <ImageView
-        android:id="@+id/addPost"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@mipmap/add"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="16dp" />
+
 
 
 </android.support.constraint.ConstraintLayout>

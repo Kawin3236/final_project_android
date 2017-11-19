@@ -51,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
             // Write logic
             return true;
         }
-        if(id == R.id.id_set){
-            // Write logic
+        if(id == R.id.id_post){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, PostFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit();
             return true;
         }
         return true;

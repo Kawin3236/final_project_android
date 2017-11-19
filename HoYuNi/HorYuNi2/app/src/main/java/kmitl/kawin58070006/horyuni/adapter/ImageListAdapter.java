@@ -40,40 +40,30 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         listImage = objects;
         this.fragmentActivity = fragmentActivity;
     }
-
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-
-
         View v = inflater.inflate(resource, null);
         final TextView tvName = (TextView) v.findViewById(R.id.tvImageName);
         final TextView tvName2 = (TextView) v.findViewById(R.id.tvImageName2);
         ImageView img = (ImageView) v.findViewById(R.id.imgView);
-
-
-            tvName.setText(listImage.get(position).getName());
-
-            Glide.with(context).load(listImage.get(position).getUrl()).into(img);
-
-            Button btnDetail = v.findViewById(R.id.btn_detail);
-            btnDetail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Detail detail = new Detail(listImage.get(position).getName(), listImage.get(position), listImage.get(position).getZone(), listImage.get(position).getMoreDetail());
-                    HomeFragment.newInstance().setDetail(detail);
-
-                    tvName2.setText(detail.getMoreDetail());
-
-                    // go to fragment
-                    fragmentActivity.getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragmentContainer, DetailFragment.newInstance(detail))
-                            .addToBackStack(null)
-                            .commit();
-                }
-            });
+        tvName.setText(listImage.get(position).getName());
+        Glide.with(context).load(listImage.get(position).getUrl()).into(img);
+        tvName2.setText(listImage.get(position).getZone());
+        ImageView btnDetail = v.findViewById(R.id.btn_detail);
+        btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Detail detail = new Detail(listImage.get(position).getName(), listImage.get(position), listImage.get(position).getZone(), listImage.get(position).getMoreDetail());
+                HomeFragment.newInstance().setDetail(detail);
+                // go to fragment
+                fragmentActivity.getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragmentContainer, DetailFragment.newInstance(detail))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
 
         return v;

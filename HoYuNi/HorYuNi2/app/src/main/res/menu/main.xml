@@ -9,8 +9,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:title="setting"
-        android:id="@+id/id_set"
+        android:title="Post"
+        android:id="@+id/id_post"
         app:showAsAction="never"
         android:orderInCategory="101"/>
 

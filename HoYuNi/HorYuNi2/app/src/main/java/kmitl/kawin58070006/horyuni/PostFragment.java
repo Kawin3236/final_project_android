@@ -196,15 +196,16 @@ public class PostFragment extends Fragment {
                                 if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
                                 else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(1), listUriString.get(0));
+                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
                                 else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(2), listUriString.get(1), listUriString.get(0));
+                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
                                 else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
+                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
                                 else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(4), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
+                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
                                 else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(5), listUriString.get(4), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
+                                    imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
+
                                 //Save image info in to firebase database
                                 String uploadId = databaseReference.push().getKey();
                                 databaseReference.child(uploadId).setValue(imageUpload);
