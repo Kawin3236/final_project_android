@@ -62,10 +62,11 @@ public class PostFragment extends Fragment {
     private Uri imguri5;
     private Uri imguri6;
     private Button btnUpload;
+    private int check;
 
 
     public static final String FB_Storage_Path = "image/";
-    public static final String FB_Database_Path = "image";
+    public static final String FB_Database_Path = "post";
     public static final int Request_Code = 1234;
     public static final int Request_Code2 = 2;
     public static final int Request_Code3 = 3;
@@ -156,6 +157,7 @@ public class PostFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 zone = adapterView.getItemAtPosition(i).toString();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -185,22 +187,23 @@ public class PostFragment extends Fragment {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                check++;
                                 //Dimiss dialog when success
                                 dialog.dismiss();
                                 //Display success toast msg
                                 Toast.makeText(getContext(), "Image uploaded", Toast.LENGTH_SHORT).show();
                                 listUriString.add(taskSnapshot.getDownloadUrl().toString());
-                                if (storageReferencesList.size() == 1)
+                                if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
-                                else if (storageReferencesList.size() == 2)
+                                else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(1), listUriString.get(0));
-                                else if (storageReferencesList.size() == 3)
+                                else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(2), listUriString.get(1), listUriString.get(0));
-                                else if (storageReferencesList.size() == 4)
+                                else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
-                                else if (storageReferencesList.size() == 5)
+                                else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(4), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
-                                else if (storageReferencesList.size() == 6)
+                                else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(5), listUriString.get(4), listUriString.get(3), listUriString.get(2), listUriString.get(1), listUriString.get(0));
                                 //Save image info in to firebase database
                                 String uploadId = databaseReference.push().getKey();

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final String FB_Storage_Path = "image/";
-    public static final String FB_Database_Path = "image";
+    public static final String FB_Database_Path = "post";
     public static final int Request_Code = 1234;
 
     @Override
