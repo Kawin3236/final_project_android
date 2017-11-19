@@ -51,7 +51,7 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         tvName.setText(listImage.get(position).getName());
         Glide.with(context).load(listImage.get(position).getUrl()).into(img);
         tvName2.setText(listImage.get(position).getZone());
-        ImageView btnDetail = v.findViewById(R.id.btn_detail);
+        TextView btnDetail = v.findViewById(R.id.btn_detail);
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

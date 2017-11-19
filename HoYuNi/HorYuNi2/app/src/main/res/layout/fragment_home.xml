@@ -1,23 +1,25 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
-    android:background="#fff"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="kmitl.kawin58070006.horyuni.HomeFragment">
+
     <Button
+        android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="ค้นหา"
-        android:id="@+id/btnSearch"
-        android:background="#F2E9E1"
-        tools:layout_constraintRight_creator="0"
-        tools:layout_constraintBottom_creator="0"
+        android:background="#5eb4aa"
+        android:text="Search"
+        android:textColor="#fff"
         app:layout_constraintBottom_toTopOf="@+id/listViewImage"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="0"
         tools:layout_constraintLeft_creator="0"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_constraintRight_creator="0" />
 
 
     <ListView
@@ -34,8 +36,6 @@
         tools:layout_constraintLeft_creator="0"
         tools:layout_constraintRight_creator="0"
         tools:layout_constraintTop_creator="0" />
-
-
 
 
 </android.support.constraint.ConstraintLayout>
