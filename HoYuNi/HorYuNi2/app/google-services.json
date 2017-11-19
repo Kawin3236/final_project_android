@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "301066559874",
+    "firebase_url": "https://horyuni.firebaseio.com",
+    "project_id": "horyuni",
+    "storage_bucket": "horyuni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301066559874:android:30d271723844f9ce",
+        "android_client_info": {
+          "package_name": "kmitl.kawin58070006.horyuni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301066559874-20l8nrae1fih7mjq1hrnjbb8j4jlfv5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kmitl.kawin58070006.horyuni",
+            "certificate_hash": "90d01013199bd9a151883914ca0375ec6be68316"
+          }
+        },
+        {
+          "client_id": "301066559874-i3jebbcg9kv9mf0trq17on45de1u3iif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGQ6qXnmDEQpznidOMgAdk22bB-keKstA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301066559874-i3jebbcg9kv9mf0trq17on45de1u3iif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
