@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
@@ -74,26 +75,30 @@
         android:text="Kawin Smthi"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_detail"
+        app:layout_constraintEnd_toStartOf="@+id/aaaa"
         app:layout_constraintStart_toEndOf="@+id/imageView8" />
 
-    <TextView
-        android:id="@+id/btn_detail"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginTop="14dp"
-        android:background="#f14e4e"
-        android:gravity="center"
-        android:text="Detail"
-        android:textAlignment="center"
-        android:textColor="#fff"
+    <android.support.v7.widget.CardView
+        android:id="@+id/aaaa"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        app:cardCornerRadius="5dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/tvImageName2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/tvImageName2">
+
+        <TextView
+            android:id="@+id/btn_detail"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="#f14e4e"
+            android:gravity="center"
+            android:text="Detail >"
+            android:textAlignment="center"
+            android:textColor="#fff" />
+    </android.support.v7.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>

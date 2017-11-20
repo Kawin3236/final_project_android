@@ -29,7 +29,7 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
     private ListView lv;
@@ -88,23 +88,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
        // addPost.setOnClickListener(this);
-        btnSearch.setOnClickListener(this);
+        //btnSearch.setOnClickListener(this);
         return rootView;
     }
 
     public void setDetail(Detail detail) {
         this.detail = detail;
     }
-
-    @Override
-    public void onClick(View view) {
-//        if (addPost.getId() == view.getId()) {
-//            goToFragment(PostFragment.newInstance());
-//        } else
-            if (btnSearch.getId() == view.getId()) {
-            goToFragment(SearchFragment.newInstance());
-        }
-    }
+//
+//    @Override
+//    public void onClick(View view) {
+////        if (addPost.getId() == view.getId()) {
+////            goToFragment(PostFragment.newInstance());
+////        } else
+//            if (btnSearch.getId() == view.getId()) {
+//            goToFragment(SearchFragment.newInstance());
+//        }
+//    }
 
     private void goToFragment(Fragment fragment) {
         getActivity().getSupportFragmentManager().beginTransaction()
