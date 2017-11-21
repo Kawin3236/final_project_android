@@ -202,7 +202,9 @@ public class PostFragment extends Fragment {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                check++;
+                               try {
+                                   check++;
+
 
                                 listUriString.add(taskSnapshot.getDownloadUrl().toString());
                                 if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
@@ -221,6 +223,11 @@ public class PostFragment extends Fragment {
                                 //Save image info in to firebase database
                                 String uploadId = databaseReference.push().getKey();
                                 databaseReference.child(uploadId).setValue(imageUpload);
+                               }catch (Exception e){
+                                   Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                   startActivity(intent);
+
+                               }
                             }
                         })
                                 .addOnFailureListener(new OnFailureListener() {
