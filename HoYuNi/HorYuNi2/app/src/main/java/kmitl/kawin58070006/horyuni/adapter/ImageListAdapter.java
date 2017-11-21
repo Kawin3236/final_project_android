@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +46,10 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         View v = inflater.inflate(resource, null);
         final TextView tvName = (TextView) v.findViewById(R.id.tvImageName);
         final TextView tvName2 = (TextView) v.findViewById(R.id.tvImageName2);
+        final TextView txtUsername = (TextView) v.findViewById(R.id.txtUsername);
+        final ImageView imgPicUser = (ImageView) v.findViewById(R.id.imgPicUser);
+        Glide.with(context).load(listImage.get(position).getUriProfile()).into(imgPicUser);
+        txtUsername.setText(listImage.get(position).getUsername());
         ImageView img = (ImageView) v.findViewById(R.id.imgView);
         tvName.setText(listImage.get(position).getName());
         Glide.with(context).load(listImage.get(position).getUrl()).into(img);

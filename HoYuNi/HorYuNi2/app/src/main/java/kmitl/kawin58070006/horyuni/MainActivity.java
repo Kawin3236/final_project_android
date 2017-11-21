@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnSearchList;
     private Button btnSearchZone;
     private String username;
+    private String uriProfile;
     public static final String FB_Storage_Path = "image/";
     public static final String FB_Database_Path = "post";
     public static final int Request_Code = 1234;
@@ -57,9 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Intent intent = getIntent();
             username = intent.getStringExtra("username");
+            uriProfile = intent.getStringExtra("uriProfile");
             initialFragment();
         }
-        Toast.makeText(getApplicationContext(),"Main : "+username, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Main : "+username+" >>> "+uriProfile, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (id == R.id.id_post) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, PostFragment.newInstance(username))
+                    .replace(R.id.fragmentContainer, PostFragment.newInstance(username, uriProfile))
                     .addToBackStack(null)
                     .commit();
         }

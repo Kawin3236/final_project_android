@@ -5,8 +5,9 @@ package kmitl.kawin58070006.horyuni.model;
  */
 
 public class ImageUpload {
-
-    public String name;
+    private String uriProfile;
+    private String username;
+    private String name;
     private ImageUpload img;
     private String zone;
     private String moreDetail;
@@ -19,13 +20,17 @@ public class ImageUpload {
     public String url7;
     public String url8;
 
-    public ImageUpload(String name, String zone, String moreDetail, String url) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
         this.url = url;
     }
-    public ImageUpload(String name, String zone, String moreDetail, String url, String url2) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -33,7 +38,9 @@ public class ImageUpload {
         this.url2 = url2;
     }
 
-    public ImageUpload(String name, String zone, String moreDetail, String url, String url2, String url3) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -42,7 +49,9 @@ public class ImageUpload {
         this.url3 = url3;
     }
 
-    public ImageUpload(String name, String zone, String moreDetail, String url, String url2, String url3, String url4) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -52,7 +61,9 @@ public class ImageUpload {
         this.url4 = url4;
     }
 
-    public ImageUpload(String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -64,7 +75,9 @@ public class ImageUpload {
 
     }
 
-    public ImageUpload(String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5, String url6) {
+    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5, String url6) {
+        this.uriProfile = uriProfile;
+        this.username = username;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -181,4 +194,19 @@ public class ImageUpload {
     }
 
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUriProfile() {
+        return uriProfile;
+    }
+
+    public void setUriProfile(String uriProfile) {
+        this.uriProfile = uriProfile;
+    }
 }

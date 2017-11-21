@@ -2,6 +2,7 @@ package kmitl.kawin58070006.horyuni;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
                     Profile profile = Profile.getCurrentProfile();
-                    goMainScreen(profile.getName());
+                    goMainScreen(profile.getName(), profile.getProfilePictureUri(35, 35).toString());
                 }
 
 
@@ -100,10 +101,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void goMainScreen(String username) {
+    private void goMainScreen(String username, String uriProfile) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("username", username);
+        intent.putExtra("uriProfile", uriProfile);
         startActivity(intent);
         finish();
     }

@@ -79,9 +79,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
                 //Init adapter
                 Collections.reverse(imgList);
-                adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
-                //Set adapter for listview
-                lv.setAdapter(adapter);
+                if (getActivity()!=null) {
+                    adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
+                    //Set adapter for listview
+                    lv.setAdapter(adapter);
+                }
             }
 
             @Override
