@@ -1,5 +1,6 @@
 package kmitl.kawin58070006.horyuni;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 
@@ -30,15 +36,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FB_Database_Path = "post";
     public static final int Request_Code = 1234;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         btnSearchList = findViewById(R.id.btnHome);
         btnSearchZone = findViewById(R.id.btnSearch);
+        firebaseAuth = FirebaseAuth.getInstance();
         btnSearchList.setOnClickListener(this);
         btnSearchZone.setOnClickListener(this);
-        initialFragment();
+        if (AccessToken.getCurrentAccessToken() == null) {
+            goToActivity();
+            //initialFragment();
+
+        } else
+            initialFragment();
+
     }
 
     private void initialFragment() {
@@ -58,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.id_profile) {
-            // Write logic
+        if (id == R.id.id_logout) {
+            logout();
             return true;
         }
         if (id == R.id.id_post) {
@@ -67,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .replace(R.id.fragmentContainer, PostFragment.newInstance())
                     .addToBackStack(null)
                     .commit();
-            return true;
+//            Intent intent = new Intent(MainActivity.this, PostActivity.class);
+//            startActivity(intent);
+//            return true;
         }
         return true;
     }
@@ -78,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnSearchList.setBackgroundColor(parseColor("#5eb4aa"));
             btnSearchZone.setBackgroundColor(parseColor("#3a7069"));
             goToFragment(HomeFragment.newInstance());
-        }
-        else if (btnSearchZone.getId() == view.getId()){
+        } else if (btnSearchZone.getId() == view.getId()) {
+
             btnSearchZone.setBackgroundColor(parseColor("#5eb4aa"));
             btnSearchList.setBackgroundColor(parseColor("#3a7069"));
             goToFragment(SearchFragment.newInstance());
@@ -91,5 +109,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .replace(R.id.fragmentContainer, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    private void goToActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("logout", true);
+        startActivity(intent);
+        finish();
+    }
+
+    private void logout() {
+        firebaseAuth.signOut();
+        LoginManager.getInstance().logOut();
+        goToActivity();
+
     }
 }

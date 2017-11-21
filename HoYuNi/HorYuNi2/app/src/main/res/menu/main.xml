@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Profile"
-        android:id="@+id/id_profile"
+        android:title="logout"
+        android:id="@+id/id_logout"
         android:orderInCategory="100"
         app:showAsAction="never"/>
 

@@ -29,7 +29,7 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
     private ListView lv;
@@ -63,6 +63,8 @@ public class HomeFragment extends Fragment {
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait loading list image...");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(MainActivity.FB_Database_Path);
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
@@ -95,16 +97,16 @@ public class HomeFragment extends Fragment {
     public void setDetail(Detail detail) {
         this.detail = detail;
     }
-//
-//    @Override
-//    public void onClick(View view) {
-////        if (addPost.getId() == view.getId()) {
-////            goToFragment(PostFragment.newInstance());
-////        } else
-//            if (btnSearch.getId() == view.getId()) {
-//            goToFragment(SearchFragment.newInstance());
-//        }
-//    }
+
+    @Override
+    public void onClick(View view) {
+//        if (addPost.getId() == view.getId()) {
+//            goToFragment(PostFragment.newInstance());
+//        } else
+            if (btnSearch.getId() == view.getId()) {
+            goToFragment(SearchFragment.newInstance());
+        }
+    }
 
     private void goToFragment(Fragment fragment) {
         getActivity().getSupportFragmentManager().beginTransaction()

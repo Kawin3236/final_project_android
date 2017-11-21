@@ -1,18 +1,15 @@
 package kmitl.kawin58070006.horyuni;
 
-
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,13 +35,7 @@ import java.util.List;
 
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 
-import static android.app.Activity.RESULT_OK;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PostFragment extends Fragment {
+public class PostActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
     private ImageView imageView;
@@ -63,7 +54,6 @@ public class PostFragment extends Fragment {
     private Uri imguri6;
     private Button btnUpload;
     private int check;
-    private int dismissCheck;
 
 
     public static final String FB_Storage_Path = "image/";
@@ -81,37 +71,22 @@ public class PostFragment extends Fragment {
 
     private Spinner spinner;
     private String zone;
-    private ProgressDialog dialog = null;
 
     private ImageUpload imageUpload;
     ArrayAdapter<CharSequence> adapter;
-
-    public PostFragment() {
-        // Required empty public constructor
-    }
-
-    public static PostFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        PostFragment fragment = new PostFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_post, container, false);
-        imageView = (ImageView) rootView.findViewById(R.id.imageView);
-        imageView2 = (ImageView) rootView.findViewById(R.id.imageView2);
-        imageView3 = (ImageView) rootView.findViewById(R.id.imageView3);
-        imageView4 = (ImageView) rootView.findViewById(R.id.imageView4);
-        imageView5 = (ImageView) rootView.findViewById(R.id.imageView5);
-        imageView6 = (ImageView) rootView.findViewById(R.id.imageView6);
-        dormitoryName = (EditText) rootView.findViewById(R.id.txtImageName);
-        editTextMoreDetai = (EditText) rootView.findViewById(R.id.txtMoreDetail);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_post);
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
+        imageView4 = (ImageView) findViewById(R.id.imageView4);
+        imageView5 = (ImageView) findViewById(R.id.imageView5);
+        imageView6 = (ImageView) findViewById(R.id.imageView6);
+        dormitoryName = (EditText) findViewById(R.id.txtImageName);
+        editTextMoreDetai = (EditText) findViewById(R.id.txtMoreDetail);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,8 +125,8 @@ public class PostFragment extends Fragment {
         });
 
 
-        spinner = rootView.findViewById(R.id.spinnerTxtZone);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.dormitory_zone, android.R.layout.simple_spinner_item);
+        spinner = findViewById(R.id.spinnerTxtZone);
+        adapter = ArrayAdapter.createFromResource(this, R.array.dormitory_zone, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -170,7 +145,7 @@ public class PostFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path);
 
 
-        btnUpload = rootView.findViewById(R.id.btnUpload);
+        btnUpload = findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,20 +156,19 @@ public class PostFragment extends Fragment {
                     }
                 }
                 if (storageReferencesList.size() > 0 && dormitoryName.getText().toString() != null && zone != null) {
-                    dialog = new ProgressDialog(getActivity());
-                    dialog.setMessage("Please wait for Uploading");
+                    final ProgressDialog dialog = new ProgressDialog(PostActivity.this);
+                    dialog.setTitle("Uploading image");
                     dialog.show();
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.setCancelable(false);
-//                    dialog.setTitle("Uploading image");
-//                    dialog.show();
                     //Add file to reference
                     for (int i = 0; i < storageReferencesList.size(); i++) {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 check++;
-
+                                //Dimiss dialog when success
+                                dialog.dismiss();
+                                //Display success toast msg
+                                Toast.makeText(getApplicationContext(), "Image uploaded", Toast.LENGTH_SHORT).show();
                                 listUriString.add(taskSnapshot.getDownloadUrl().toString());
                                 if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
                                     imageUpload = new ImageUpload(dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
@@ -220,29 +194,31 @@ public class PostFragment extends Fragment {
                                         //Dimiss dialog when error
                                         dialog.dismiss();
                                         //Display err toast msg
-                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 })
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+
                                     @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        dismissCheck++;
-                                        if (dismissCheck == storageReferencesList.size())
-                                            dialog.dismiss();
+                                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                        //Show upload progress
+                                        double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                        dialog.setMessage("Uploaded " + (int) progress + "%");
                                     }
                                 });
                     }
-
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragmentContainer, HomeFragment.newInstance())
-                            .addToBackStack(null)
-                            .commit();
+//                    getSupportFragmentManager().beginTransaction()
+//                            .add(R.id.fragmentContainer, HomeFragment.newInstance())
+//                            .addToBackStack(null)
+//                            .commit();
+                    Intent intent = new Intent(PostActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(getContext(), "Please complete your data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please complete your data.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        return rootView;
     }
 
     @Override
@@ -255,7 +231,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri1);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri1);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri1);
                 imageView.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -268,7 +244,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri2);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri2);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri2);
                 imageView2.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -281,7 +257,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri3);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri3);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri3);
                 imageView3.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -294,7 +270,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri4);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri4);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri4);
                 imageView4.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -307,7 +283,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri5);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri5);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri5);
                 imageView5.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -320,7 +296,7 @@ public class PostFragment extends Fragment {
             listUri.add(imguri6);
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri6);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imguri6);
                 imageView6.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -333,7 +309,7 @@ public class PostFragment extends Fragment {
 
 
     public String getImageExt(Uri uri) {
-        ContentResolver contentResolver = getActivity().getContentResolver();
+        ContentResolver contentResolver = this.getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
@@ -344,6 +320,4 @@ public class PostFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select image"), Request_Code);
     }
-
-
 }
