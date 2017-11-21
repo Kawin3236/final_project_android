@@ -86,14 +86,16 @@ public class PostFragment extends Fragment {
     private ImageUpload imageUpload;
     ArrayAdapter<CharSequence> adapter;
 
+    private static String username;
+
     public PostFragment() {
         // Required empty public constructor
     }
 
-    public static PostFragment newInstance() {
+    public static PostFragment newInstance(String username) {
 
         Bundle args = new Bundle();
-
+        setUsername(username);
         PostFragment fragment = new PostFragment();
         fragment.setArguments(args);
         return fragment;
@@ -104,6 +106,7 @@ public class PostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_post, container, false);
+        Toast.makeText(getContext(), "This is a: "+username, Toast.LENGTH_SHORT).show();
         imageView = (ImageView) rootView.findViewById(R.id.imageView);
         imageView2 = (ImageView) rootView.findViewById(R.id.imageView2);
         imageView3 = (ImageView) rootView.findViewById(R.id.imageView3);
@@ -245,6 +248,10 @@ public class PostFragment extends Fragment {
         return rootView;
     }
 
+    public static void setUsername(String username) {
+        PostFragment.username = username;
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -344,6 +351,4 @@ public class PostFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select image"), Request_Code);
     }
-
-
 }

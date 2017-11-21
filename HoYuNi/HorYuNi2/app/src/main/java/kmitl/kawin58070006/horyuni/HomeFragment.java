@@ -89,8 +89,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
             }
         });
-       // addPost.setOnClickListener(this);
-        //btnSearch.setOnClickListener(this);
+
         return rootView;
     }
 

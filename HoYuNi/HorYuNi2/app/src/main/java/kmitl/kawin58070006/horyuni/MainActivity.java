@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Uri imguri;
     private Button btnSearchList;
     private Button btnSearchZone;
+    private String username;
     public static final String FB_Storage_Path = "image/";
     public static final String FB_Database_Path = "post";
     public static final int Request_Code = 1234;
@@ -52,8 +54,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             goToActivity();
             //initialFragment();
 
-        } else
+        } else {
+            Intent intent = getIntent();
+            username = intent.getStringExtra("username");
             initialFragment();
+        }
+        Toast.makeText(getApplicationContext(),"Main : "+username, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -80,12 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (id == R.id.id_post) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, PostFragment.newInstance())
+                    .replace(R.id.fragmentContainer, PostFragment.newInstance(username))
                     .addToBackStack(null)
                     .commit();
-//            Intent intent = new Intent(MainActivity.this, PostActivity.class);
-//            startActivity(intent);
-//            return true;
         }
         return true;
     }

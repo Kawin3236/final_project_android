@@ -13,6 +13,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -53,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccesToken(loginResult.getAccessToken());
-                Log.d("", "facebook:onSuccess:"+loginResult);
 
             }
 
@@ -73,7 +73,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
-                    goMainScreen();
+                    Profile profile = Profile.getCurrentProfile();
+                    goMainScreen(profile.getName());
                 }
 
 
@@ -99,9 +100,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void goMainScreen() {
+    private void goMainScreen(String username) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("username", username);
         startActivity(intent);
         finish();
     }
