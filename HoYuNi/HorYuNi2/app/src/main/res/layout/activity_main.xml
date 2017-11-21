@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#FFF14E4E"
     android:orientation="vertical"
     tools:context="kmitl.kawin58070006.horyuni.MainActivity">
 
@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-       
+
             <Button
                 android:id="@+id/btnHome"
                 android:layout_width="match_parent"
@@ -41,6 +41,7 @@
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 
