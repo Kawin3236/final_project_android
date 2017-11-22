@@ -1,16 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
     tools:context="kmitl.kawin58070006.horyuni.DetailFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <Button
         android:id="@+id/btnShare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="share"
-        />
+        android:text="share" />
 
 
     <TextView
@@ -45,70 +48,61 @@
         android:text="ลายระเอียด : "
         android:textSize="20sp" />
 
-    <ScrollView
+
+    <TextView
+        android:id="@+id/textMoreDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Name : " />
 
-        <TextView
-            android:id="@+id/textMoreDetail"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:text="Name : "
-            android:textSize="15sp" />
-    </ScrollView>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageDetail1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/imageDetail1"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/imageDetail2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/imageDetail2"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
-
-            <ImageView
-                android:id="@+id/imageDetail3"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/imageDetail3"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
 
-            <ImageView
-                android:id="@+id/imageDetail4"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/imageDetail4"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/imageDetail5"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/imageDetail5"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/imageDetail6"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop" />
-            <ImageView
-                android:id="@+id/viewCapture"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
+        <ImageView
+            android:id="@+id/imageDetail6"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
 
-        </LinearLayout>
-    </ScrollView>
-
-
+        <ImageView
+            android:id="@+id/viewCapture"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+    </LinearLayout>
 </LinearLayout>
+
+</ScrollView>

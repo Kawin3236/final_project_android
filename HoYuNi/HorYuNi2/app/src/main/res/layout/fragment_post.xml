@@ -15,41 +15,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="โซนหอ"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/spinnerTxtZone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="โซนหอ"
-            />
+            android:hint="โซนหอ" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ชื่อหอ"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
+
         <EditText
-            android:id="@+id/txtImageName"
+            android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:text=""/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ลายละเอียด"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
+
 
         <EditText
-            android:id="@+id/txtMoreDetail"
+            android:id="@+id/editMoreDetail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:gravity="top"
+            android:text=""
             android:textAlignment="viewStart"
             tools:ignore="RtlCompat" />
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="รูปภาพ"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,24 +67,24 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
@@ -97,24 +97,24 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@mipmap/addimg" />
@@ -126,7 +126,8 @@
             android:layout_height="wrap_content"
             android:background="#aaa"
             android:onClick="btnUpload_Click"
-            android:text="post" />
+            android:text="post"
+            tools:ignore="OnClick" />
 
     </LinearLayout>
 

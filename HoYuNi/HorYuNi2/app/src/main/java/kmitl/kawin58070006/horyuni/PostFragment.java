@@ -119,8 +119,8 @@ public class PostFragment extends Fragment {
         imageView4 = (ImageView) rootView.findViewById(R.id.imageView4);
         imageView5 = (ImageView) rootView.findViewById(R.id.imageView5);
         imageView6 = (ImageView) rootView.findViewById(R.id.imageView6);
-        dormitoryName = (EditText) rootView.findViewById(R.id.txtImageName);
-        editTextMoreDetai = (EditText) rootView.findViewById(R.id.txtMoreDetail);
+        dormitoryName = (EditText) rootView.findViewById(R.id.editName);
+        editTextMoreDetai = (EditText) rootView.findViewById(R.id.editMoreDetail);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,15 +183,16 @@ public class PostFragment extends Fragment {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (Uri imgUri : listUri) {
-                    if (imgUri != null) {
-                        StorageReference ref = storageReference.child(FB_Storage_Path + System.currentTimeMillis() + "." + getImageExt(imgUri));
-                        storageReferencesList.add(ref);
+
+                if (listUri.size() > 0 && !dormitoryName.getText().toString().isEmpty() && !editTextMoreDetai.getText().toString().isEmpty()) {
+                    for (Uri imgUri : listUri) {
+                        if (imgUri != null) {
+                            StorageReference ref = storageReference.child(FB_Storage_Path + System.currentTimeMillis() + "." + getImageExt(imgUri));
+                            storageReferencesList.add(ref);
+                        }
                     }
-                }
-                if (storageReferencesList.size() > 0 && dormitoryName.getText().toString() != null && zone != null) {
                     dialog = new ProgressDialog(getActivity());
-                    dialog.setMessage("Please wait for Uploading");
+                    dialog.setMessage(":-"+ dormitoryName.getText().toString()+"-");
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.setCancelable(false);
@@ -253,7 +254,7 @@ public class PostFragment extends Fragment {
                             .add(R.id.fragmentContainer, HomeFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
-                } else {
+                } else{
                     Toast.makeText(getContext(), "Please complete your data.", Toast.LENGTH_SHORT).show();
                 }
             }
