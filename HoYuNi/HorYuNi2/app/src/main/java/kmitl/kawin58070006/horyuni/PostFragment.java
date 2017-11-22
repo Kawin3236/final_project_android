@@ -192,7 +192,7 @@ public class PostFragment extends Fragment {
                         }
                     }
                     dialog = new ProgressDialog(getActivity());
-                    dialog.setMessage(":-"+ dormitoryName.getText().toString()+"-");
+                    dialog.setMessage(":-" + dormitoryName.getText().toString() + "-");
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.setCancelable(false);
@@ -203,32 +203,32 @@ public class PostFragment extends Fragment {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                               try {
-                                   check++;
+                                try {
+                                    check++;
 
 
-                                listUriString.add(taskSnapshot.getDownloadUrl().toString());
-                                if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username.toString(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
-                                else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
-                                else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
-                                else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
-                                else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
-                                else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
-                                    imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
+                                    listUriString.add(taskSnapshot.getDownloadUrl().toString());
+                                    if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username.toString(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
+                                    else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
+                                    else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
+                                    else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
+                                    else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
+                                    else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
 
-                                //Save image info in to firebase database
-                                String uploadId = databaseReference.push().getKey();
-                                databaseReference.child(uploadId).setValue(imageUpload);
-                               }catch (Exception e){
-                                   Intent intent = new Intent(getActivity(), LoginActivity.class);
-                                   startActivity(intent);
+                                    //Save image info in to firebase database
+                                    String uploadId = databaseReference.push().getKey();
+                                    databaseReference.child(uploadId).setValue(imageUpload);
+                                } catch (Exception e) {
+                                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                    startActivity(intent);
 
-                               }
+                                }
                             }
                         })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -254,7 +254,7 @@ public class PostFragment extends Fragment {
                             .add(R.id.fragmentContainer, HomeFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
-                } else{
+                } else {
                     Toast.makeText(getContext(), "Please complete your data.", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -13,8 +13,6 @@
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/comment"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,68 +25,89 @@
         android:id="@+id/tvImageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="32dp"
         android:gravity="center"
         android:text="name"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgPicUser"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/tvImageName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Zone"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtUsername"
-        app:layout_constraintStart_toStartOf="@+id/txtUsername"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121"
         tools:ignore="MissingConstraints" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgPicUser"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="36dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtUsername"
-            app:layout_constraintEnd_toStartOf="@+id/txtUsername"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtUsername"
-            tools:ignore="MissingConstraints"
-            android:src="@mipmap/add"
-            />
-
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgPicUser"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.879"
+        tools:ignore="MissingConstraints" />
 
 
     <TextView
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="null"
+        android:textAlignment="viewStart"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aaaa"
-        app:layout_constraintStart_toEndOf="@+id/imgPicUser" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/aaaa"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtUsername"
-        app:layout_constraintTop_toBottomOf="@+id/tvImageName2">
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/btn_detail"
