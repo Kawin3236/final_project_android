@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         //addPost = rootView.findViewById(R.id.addPost);
-        btnSearch = rootView.findViewById(R.id.btnSearch);
+       // btnSearch = rootView.findViewById(R.id.btnSearch);
 
         imgList = new ArrayList<>();
         lv = (ListView) rootView.findViewById(R.id.listViewImage);

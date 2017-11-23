@@ -48,8 +48,10 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         final TextView tvName2 = (TextView) v.findViewById(R.id.tvImageName2);
         final TextView txtUsername = (TextView) v.findViewById(R.id.txtUsername);
         final ImageView imgPicUser = (ImageView) v.findViewById(R.id.imgPicUser);
+        final TextView textDate = (TextView) v.findViewById(R.id.textDate);
         Glide.with(context).load(listImage.get(position).getUriProfile()).into(imgPicUser);
         txtUsername.setText(listImage.get(position).getUsername());
+        textDate.setText(listImage.get(position).getDate());
         ImageView img = (ImageView) v.findViewById(R.id.imgView);
         tvName.setText(listImage.get(position).getName());
         Glide.with(context).load(listImage.get(position).getUrl()).into(img);

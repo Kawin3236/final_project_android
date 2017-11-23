@@ -92,12 +92,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    storageReference = FirebaseStorage.getInstance().getReference();
-                    databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path_User);
-                    String uploadId = databaseReference.push().getKey();
                     Profile profile = Profile.getCurrentProfile();
                     user = new User(uploadId, profile.getName(), profile.getProfilePictureUri(35, 35).toString());
-                    databaseReference.child(uploadId).setValue(user);
                     SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
                     Editor editor = sharedpreferences.edit();
                     editor.putString("uploadId", uploadId);

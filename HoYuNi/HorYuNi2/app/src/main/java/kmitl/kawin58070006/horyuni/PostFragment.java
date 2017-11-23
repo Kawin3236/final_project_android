@@ -33,7 +33,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
@@ -88,6 +90,11 @@ public class PostFragment extends Fragment {
 
     private static String username;
     private static String uriProfile;
+
+    private Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
+    private String date;
+
 
     public PostFragment() {
         // Required empty public constructor
@@ -192,7 +199,7 @@ public class PostFragment extends Fragment {
                         }
                     }
                     dialog = new ProgressDialog(getActivity());
-                    dialog.setMessage(":-" + dormitoryName.getText().toString() + "-");
+                    dialog.setMessage("Please wait for upload...");
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.setCancelable(false);
@@ -205,21 +212,19 @@ public class PostFragment extends Fragment {
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 try {
                                     check++;
-
-
                                     listUriString.add(taskSnapshot.getDownloadUrl().toString());
                                     if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username.toString(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username.toString(), getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
                                     else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
                                     else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
                                     else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
                                     else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
                                     else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username,  getDateTime(),dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
 
                                     //Save image info in to firebase database
                                     String uploadId = databaseReference.push().getKey();
@@ -364,5 +369,11 @@ public class PostFragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select image"), Request_Code);
+    }
+    public String getDateTime(){
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+        date = simpleDateFormat.format(calendar.getTime());
+        return date;
     }
 }

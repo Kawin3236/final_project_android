@@ -71,7 +71,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -79,7 +79,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -87,7 +87,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img" />
         </LinearLayout>
 
         <LinearLayout
@@ -101,7 +101,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -109,7 +109,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -117,7 +117,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@mipmap/addimg" />
+                android:src="@drawable/ic_add_img"/>
         </LinearLayout>
 
         <Button

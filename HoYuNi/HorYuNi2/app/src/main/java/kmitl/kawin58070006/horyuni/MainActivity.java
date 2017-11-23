@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 
 import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
@@ -45,11 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
-    private ImageView imageView;
-    private EditText editText;
-    private Uri imguri;
-    private TextView btnSearchList;
-    private TextView btnSearchZone;
+    private LinearLayout linearList;
+    private LinearLayout linearPost;
+    private LinearLayout linearZone;
+    private ImageView imgList;
+    private ImageView imgZone;
+    private ImageView imgAddPost;
     private String username = "";
     private String uriProfile;
     private String uploadId;
@@ -57,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FB_Database_Path = "post";
     public static final String FB_Database_Path_User = "users";
     public static final int Request_Code = 1234;
-    private User user;
 
     private FirebaseAuth firebaseAuth;
 
@@ -70,12 +73,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         uploadId = sharedpreferences.getString("uploadId", "");
         username = sharedpreferences.getString("username", "");
         uriProfile= sharedpreferences.getString("uriProfile", "");
-
-        btnSearchList = findViewById(R.id.btnHome);
-        btnSearchZone = findViewById(R.id.btnSearch);
+        linearList = findViewById(R.id.linearList);
+        linearPost = findViewById(R.id.linearPost);
+        linearZone = findViewById(R.id.linearZone);
+        imgList = findViewById(R.id.imgList);
+        imgZone = findViewById(R.id.imgZone);
+        imgAddPost = findViewById(R.id.imgAddPost);
         firebaseAuth = FirebaseAuth.getInstance();
-        btnSearchList.setOnClickListener(this);
-        btnSearchZone.setOnClickListener(this);
+        linearList.setOnClickListener(this);
+        linearPost.setOnClickListener(this);
+        linearZone.setOnClickListener(this);
         if (AccessToken.getCurrentAccessToken() == null) {
             goToActivity();
             //initialFragment();
@@ -108,31 +115,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
         if (id == R.id.id_logout) {
             logout();
-            return true;
         }
         if (id == R.id.id_post) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, PostFragment.newInstance(username, uriProfile))
                     .addToBackStack(null)
-
                     .commit();
-        }
-        if (id == R.id.id_zone) {
-            goToFragment(SearchFragment.newInstance());
         }
         return true;
     }
 
     @Override
     public void onClick(View view) {
-        if (btnSearchList.getId() == view.getId()) {
-            btnSearchList.setTextColor(parseColor("#5eb4aa"));
-            btnSearchZone.setTextColor(parseColor("#d1d0d0"));
-            goToFragment(HomeFragment.newInstance());
-        } else if (btnSearchZone.getId() == view.getId()) {
+        if (linearList.getId() == view.getId()) {
 
-            btnSearchZone.setTextColor(parseColor("#5eb4aa"));
-            btnSearchList.setTextColor(parseColor("#d1d0d0"));
+            imgList.setImageResource(R.drawable.ic_home_blue);
+            imgZone.setImageResource(R.drawable.ic_lotion_on_black);
+            imgAddPost.setImageResource(R.drawable.ic_add_black);
+            goToFragment(HomeFragment.newInstance());
+        }
+        else if (linearPost.getId() == view.getId()){
+            imgAddPost.setImageResource(R.drawable.ic_add_blue);
+            imgZone.setImageResource(R.drawable.ic_lotion_on_black);
+            imgList.setImageResource(R.drawable.ic_action_name);
+            goToFragment(PostFragment.newInstance(username, uriProfile));
+        }
+        else if (linearZone.getId() == view.getId()) {
+
+            imgList.setImageResource(R.drawable.ic_action_name);
+            imgZone.setImageResource(R.drawable.ic_location_on_blue);
+            imgAddPost.setImageResource(R.drawable.ic_add_black);
             goToFragment(SearchFragment.newInstance());
         }
     }

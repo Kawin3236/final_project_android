@@ -10,6 +10,7 @@ public class ImageUpload {
     private String name;
     private ImageUpload img;
     private String zone;
+    private String date;
     private String moreDetail;
     public String url;
     public String url2;
@@ -20,17 +21,20 @@ public class ImageUpload {
     public String url7;
     public String url8;
 
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url) {
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
         this.url = url;
     }
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2) {
+
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url, String url2) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -38,9 +42,10 @@ public class ImageUpload {
         this.url2 = url2;
     }
 
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3) {
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url, String url2, String url3) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -49,9 +54,10 @@ public class ImageUpload {
         this.url3 = url3;
     }
 
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4) {
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url, String url2, String url3, String url4) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -61,9 +67,10 @@ public class ImageUpload {
         this.url4 = url4;
     }
 
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5) {
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -75,9 +82,10 @@ public class ImageUpload {
 
     }
 
-    public ImageUpload(String uriProfile, String username, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5, String url6) {
+    public ImageUpload(String uriProfile, String username, String date, String name, String zone, String moreDetail, String url, String url2, String url3, String url4, String url5, String url6) {
         this.uriProfile = uriProfile;
         this.username = username;
+        this.date = date;
         this.name = name;
         this.zone = zone;
         this.moreDetail = moreDetail;
@@ -208,5 +216,13 @@ public class ImageUpload {
 
     public void setUriProfile(String uriProfile) {
         this.uriProfile = uriProfile;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

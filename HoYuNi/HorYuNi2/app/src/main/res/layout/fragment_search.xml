@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:weightSum="9"
     tools:context="kmitl.kawin58070006.horyuni.SearchFragment">
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เกกี1"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เกกี2"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เกกี3"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Workpoint"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -222,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เจ๊เล๊ง"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -267,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ซอยหอใหม่"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -319,7 +319,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RNP"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -364,7 +364,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ปาป๊ามาม๊า"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -409,7 +409,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="กลางสวน"
-                    android:textColor="#ffffff" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:layout_width="wrap_content"

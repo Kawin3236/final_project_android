@@ -15,12 +15,7 @@
         app:showAsAction="always"
         android:orderInCategory="101"
         android:icon="@mipmap/icon_add"/>
-    <item
 
-        android:id="@+id/id_zone"
-        app:showAsAction="always"
-        android:title="zone"
-        android:icon="@mipmap/ic_search_black_24dp"/>
 
 
 

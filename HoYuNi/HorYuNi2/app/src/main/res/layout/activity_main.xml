@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1a1919"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context="kmitl.kawin58070006.horyuni.MainActivity">
@@ -15,57 +15,75 @@
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_weight="10"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="0.1"
+        android:background="#767676" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:orientation="horizontal"
-        android:weightSum="2">
-
-
-        <TextView
-            android:id="@+id/btnHome"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:text="List"
-            android:textAlignment="center"
-            android:textColor="#5eb4aa"
-            android:textSize="15dp" />
-
+        android:weightSum="3">
 
         <LinearLayout
+            android:id="@+id/linearList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:weightSum="2">
+            >
 
             <ImageView
+                android:id="@+id/imgList"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_home_blue" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/imgAddPost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:background="#fff"
-                android:src="@mipmap/ic_apps_black_24dp"
-                />
+                android:src="@drawable/ic_add_black" />
 
-            <TextView
-                android:id="@+id/btnSearch"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearZone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/imgZone"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:text="Zone"
-                android:textAlignment="center"
-                android:textColor="#d1d0d0"
-                android:textSize="15dp" />
+                android:background="#fff"
+
+                android:src="@drawable/ic_lotion_on_black" />
+
+
 
         </LinearLayout>
     </LinearLayout>
