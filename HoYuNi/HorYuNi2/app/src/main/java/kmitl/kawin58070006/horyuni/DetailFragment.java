@@ -42,6 +42,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     private ImageView imageView4;
     private ImageView imageView5;
     private ImageView imageView6;
+    private ImageView imgMainDetail;
     private ImageView viewCapture;
     private ImageView btnShare;
     private static Detail detail;
@@ -71,18 +72,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         nameZone.setText(detail.getZone());
         moreDetail = rootView.findViewById(R.id.textMoreDetail);
         moreDetail.setText(detail.getMoreDetail());
-
+        imgMainDetail = rootView.findViewById(R.id.imgMainDetail);
+        Glide.with(getActivity()).load(detail.getImg().getUrl()).into(imgMainDetail);
         imageView1 = rootView.findViewById(R.id.imageDetail1);
         Glide.with(getActivity()).load(detail.getImg().getUrl()).into(imageView1);
-        imageView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("this is image");
-                builder.create();
-                builder.show();
-            }
-        });
         viewCapture = rootView.findViewById(R.id.viewCapture);
         imageView2 = rootView.findViewById(R.id.imageDetail2);
         Glide.with(getActivity()).load(detail.getImg().getUrl2()).into(imageView2);

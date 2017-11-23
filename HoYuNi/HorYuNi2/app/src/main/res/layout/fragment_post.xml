@@ -12,6 +12,7 @@
         android:layout_weight="9">
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -40,7 +41,8 @@
 
         <EditText
             android:id="@+id/editName"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:text=""
             android:textAlignment="center"/>
@@ -56,9 +58,9 @@
 
         <EditText
             android:id="@+id/editMoreDetail"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
             android:gravity="top"
             android:text=""
             android:textAlignment="center"
@@ -141,6 +143,7 @@
         android:background="#8fbe00"
         android:onClick="btnUpload_Click"
         android:text="โพสต์"
+        android:textSize="18dp"
         android:textColor="#fff"
         android:textAlignment="center"
         android:gravity="center"

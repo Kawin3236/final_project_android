@@ -12,76 +12,102 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="#8fbe00"
-            android:layout_gravity="right"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  แชร์ "
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:textColor="#fff"/>
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <ImageView
-                android:id="@+id/btnShare"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
+                android:id="@+id/imgMainDetail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.7"
+                android:scaleType="fitXY" />
 
-                android:src="@drawable/ic_reply" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_weight="1.3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="ชื่อหอ : "
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textnameDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name : "
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="โซนหอ : "
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtDZone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name : "
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#8fbe00">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="  แชร์ "
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/btnShare"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_reply" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1dp"
+            android:layout_weight="0.1"
+            android:background="#ececec"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="ชื่อหอ : "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textnameDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name : "
-                android:textColor="#000000"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="โซนหอ : "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/txtDZone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name : "
-                android:textColor="#000000"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="ลายระเอียด"
-            android:textSize="20sp" />
 
 
         <TextView
@@ -93,6 +119,12 @@
             android:textColor="#000000"
             android:textSize="20sp" />
 
+        <View
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="0.1"
+            android:background="#ececec"/>
 
         <LinearLayout
             android:layout_width="match_parent"
