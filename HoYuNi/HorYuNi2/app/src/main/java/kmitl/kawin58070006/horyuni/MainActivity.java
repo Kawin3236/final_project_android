@@ -116,12 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (id == R.id.id_logout) {
             logout();
         }
-        if (id == R.id.id_post) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, PostFragment.newInstance(username, uriProfile))
-                    .addToBackStack(null)
-                    .commit();
-        }
         return true;
     }
 

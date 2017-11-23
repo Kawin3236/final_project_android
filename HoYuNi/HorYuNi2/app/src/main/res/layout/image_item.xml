@@ -139,7 +139,7 @@
             android:id="@+id/btn_detail"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:background="#f14e4e"
+            android:background="#8fbe00"
             android:gravity="center"
             android:text="Detail >"
             android:textAlignment="center"
@@ -147,5 +147,5 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
     </android.support.v7.widget.CardView>
-    
+
 </android.support.constraint.ConstraintLayout>
