@@ -5,104 +5,148 @@
     android:background="#fff"
     android:orientation="vertical"
     tools:context="kmitl.kawin58070006.horyuni.DetailFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <Button
-        android:id="@+id/btnShare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="share" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ชื่อหอ : "
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textnameDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name : "
-        android:textSize="15sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="โซนหอ : "
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/txtDZone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name : "
-        android:textSize="15sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ลายระเอียด : "
-        android:textSize="20sp" />
-
-
-    <TextView
-        android:id="@+id/textMoreDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name : " />
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageDetail1"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#8fbe00"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  แชร์ "
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="#fff"/>
 
-        <ImageView
-            android:id="@+id/imageDetail2"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+            <ImageView
+                android:id="@+id/btnShare"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
 
-        <ImageView
-            android:id="@+id/imageDetail3"
+                android:src="@drawable/ic_reply" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="ชื่อหอ : "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textnameDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name : "
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="โซนหอ : "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtDZone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name : "
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="ลายระเอียด"
+            android:textSize="20sp" />
 
 
-        <ImageView
-            android:id="@+id/imageDetail4"
+        <TextView
+            android:id="@+id/textMoreDetail"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Name : "
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/imageDetail5"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
 
-        <ImageView
-            android:id="@+id/imageDetail6"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/viewCapture"
-            android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            <ImageView
+                android:id="@+id/imageDetail1"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/imageDetail2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/imageDetail3"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+
+            <ImageView
+                android:id="@+id/imageDetail4"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/imageDetail5"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/imageDetail6"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/viewCapture"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 
 </ScrollView>

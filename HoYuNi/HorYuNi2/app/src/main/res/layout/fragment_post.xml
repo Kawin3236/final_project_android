@@ -1,10 +1,15 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="kmitl.kawin58070006.horyuni.PostFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,32 +19,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="โซนหอ"
+            android:text="เลือกโซนหอ"
+            android:layout_gravity="center"
             android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinnerTxtZone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="โซนหอ" />
+            android:layout_height="48dp"
+            android:hint="โซนหอ"
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ชื่อหอ"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text=""
+            android:textAlignment="center"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ลายละเอียด"
+            android:layout_gravity="center"
             android:textSize="18sp" />
 
 
@@ -50,14 +61,15 @@
             android:layout_gravity="top"
             android:gravity="top"
             android:text=""
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             tools:ignore="RtlCompat" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="รูปภาพ"
+            android:text="เพิ่มรูปภาพ"
+            android:layout_gravity="center"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -67,24 +79,24 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img" />
@@ -97,38 +109,42 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img" />
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:src="@drawable/ic_add_img"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnUpload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#aaa"
-            android:onClick="btnUpload_Click"
-            android:text="post"
-            tools:ignore="OnClick" />
-
     </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8fbe00"
+        android:onClick="btnUpload_Click"
+        android:text="โพสต์"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_gravity="center"
+        tools:ignore="OnClick" />
 
-</ScrollView>
+</LinearLayout>

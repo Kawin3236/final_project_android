@@ -43,7 +43,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     private ImageView imageView5;
     private ImageView imageView6;
     private ImageView viewCapture;
-    private Button btnShare;
+    private ImageView btnShare;
     private static Detail detail;
 
 

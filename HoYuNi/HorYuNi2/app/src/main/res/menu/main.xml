@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="logout"
+        android:title="ออกจากระบบ"
         android:id="@+id/id_logout"
         android:orderInCategory="100"
         app:showAsAction="always"/>
