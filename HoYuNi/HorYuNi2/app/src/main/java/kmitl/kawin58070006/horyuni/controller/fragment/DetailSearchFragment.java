@@ -1,4 +1,4 @@
-package kmitl.kawin58070006.horyuni;
+package kmitl.kawin58070006.horyuni.controller.fragment;
 
 
 import android.app.ProgressDialog;
@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import kmitl.kawin58070006.horyuni.R;
 import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 

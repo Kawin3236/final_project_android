@@ -5,7 +5,7 @@
     android:background="#ffffff"
     android:orientation="vertical"
     android:weightSum="9"
-    tools:context="kmitl.kawin58070006.horyuni.SearchFragment">
+    tools:context="kmitl.kawin58070006.horyuni.controller.fragment.SearchFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

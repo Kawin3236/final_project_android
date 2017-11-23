@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#ffffff"
     android:weightSum="5"
-    tools:context="kmitl.kawin58070006.horyuni.LoginActivity">
+    tools:context="kmitl.kawin58070006.horyuni.controller.activity.LoginActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package kmitl.kawin58070006.horyuni;
+package kmitl.kawin58070006.horyuni.controller.fragment;
 
 
 import android.app.ProgressDialog;
@@ -27,7 +27,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -38,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import kmitl.kawin58070006.horyuni.R;
+import kmitl.kawin58070006.horyuni.controller.activity.LoginActivity;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 
 import static android.app.Activity.RESULT_OK;
@@ -253,7 +254,7 @@ public class PostFragment extends Fragment {
                             .addToBackStack(null)
                             .commit();
                 } else {
-                    Toast.makeText(getContext(), "Please complete your data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "กรุณากรอกข้อมูลให้ครบ", Toast.LENGTH_SHORT).show();
                 }
             }
         });

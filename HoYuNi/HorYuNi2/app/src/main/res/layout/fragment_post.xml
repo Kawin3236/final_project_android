@@ -5,7 +5,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="kmitl.kawin58070006.horyuni.PostFragment">
+    tools:context="kmitl.kawin58070006.horyuni.controller.fragment.PostFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เลือกโซนหอ"
+            android:textColor="#ff0000"
             android:layout_gravity="center"
             android:textSize="18sp" />
 
@@ -35,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ชื่อหอ"
+            android:textColor="#ff0000"
             android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:textSize="18sp" />
@@ -52,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ลายละเอียด"
+            android:textColor="#ff0000"
             android:layout_gravity="center"
             android:textSize="18sp" />
 
@@ -71,10 +74,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เพิ่มรูปภาพ"
+            android:textColor="#ff0000"
             android:layout_gravity="center"
             android:textSize="18sp" />
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3">
@@ -105,6 +110,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3">

@@ -16,8 +16,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import kmitl.kawin58070006.horyuni.DetailFragment;
-import kmitl.kawin58070006.horyuni.HomeFragment;
+import kmitl.kawin58070006.horyuni.controller.fragment.DetailFragment;
+import kmitl.kawin58070006.horyuni.controller.fragment.HomeFragment;
 import kmitl.kawin58070006.horyuni.R;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;

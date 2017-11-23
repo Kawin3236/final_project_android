@@ -1,4 +1,4 @@
-package kmitl.kawin58070006.horyuni;
+package kmitl.kawin58070006.horyuni.controller.fragment;
 
 
 import android.app.ProgressDialog;
@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +19,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import kmitl.kawin58070006.horyuni.R;
 import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listViewImage);
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Please wait loading list image...");
+        progressDialog.setMessage("กำลังโหลดข้อมูล");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();

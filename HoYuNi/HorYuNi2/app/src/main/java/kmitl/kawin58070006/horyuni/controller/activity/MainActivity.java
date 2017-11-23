@@ -1,47 +1,32 @@
-package kmitl.kawin58070006.horyuni;
+package kmitl.kawin58070006.horyuni.controller.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-
-import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
-import kmitl.kawin58070006.horyuni.model.ImageUpload;
-import kmitl.kawin58070006.horyuni.model.User;
-
-import static android.graphics.Color.parseColor;
+import kmitl.kawin58070006.horyuni.R;
+import kmitl.kawin58070006.horyuni.controller.fragment.HomeFragment;
+import kmitl.kawin58070006.horyuni.controller.fragment.PostFragment;
+import kmitl.kawin58070006.horyuni.controller.fragment.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

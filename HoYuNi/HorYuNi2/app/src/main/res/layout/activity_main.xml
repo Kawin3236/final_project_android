@@ -9,7 +9,8 @@
     android:background="#ffffff"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="kmitl.kawin58070006.horyuni.MainActivity">
+    tools:context="kmitl.kawin58070006.horyuni.controller.activity.MainActivity">
+
 
 
     <FrameLayout

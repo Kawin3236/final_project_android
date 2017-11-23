@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#fff"
 
-    tools:context="kmitl.kawin58070006.horyuni.HomeFragment">
+    tools:context="kmitl.kawin58070006.horyuni.controller.fragment.HomeFragment">
 
     <ListView
         android:layout_width="0dp"
