@@ -114,7 +114,6 @@ public class PostFragment extends Fragment {
         PostFragment.uriProfile = uriProfile;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -181,11 +180,8 @@ public class PostFragment extends Fragment {
             }
         });
 
-
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path);
-
-
         btnUpload = rootView.findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,8 +199,6 @@ public class PostFragment extends Fragment {
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.setCancelable(false);
-//                    dialog.setTitle("Uploading image");
-//                    dialog.show();
                     //Add file to reference
                     for (int i = 0; i < storageReferencesList.size(); i++) {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -232,7 +226,6 @@ public class PostFragment extends Fragment {
                                 } catch (Exception e) {
                                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                                     startActivity(intent);
-
                                 }
                             }
                         })

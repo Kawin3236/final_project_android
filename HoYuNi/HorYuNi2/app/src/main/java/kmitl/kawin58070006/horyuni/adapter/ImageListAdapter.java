@@ -69,10 +69,6 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
                         .commit();
             }
         });
-
-
         return v;
-
     }
-
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +25,7 @@ import com.bumptech.glide.Glide;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.lang.reflect.Method;
 
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.Screenshot;
@@ -44,7 +46,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     private ImageView imageView6;
     private ImageView imgMainDetail;
     private ImageView viewCapture;
-    private ImageView btnShare;
+    private LinearLayout btnShare;
     private static Detail detail;
 
 
@@ -68,28 +70,37 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         name = rootView.findViewById(R.id.textnameDetail);
         name.setText(detail.getName());
+
         nameZone = rootView.findViewById(R.id.txtDZone);
         nameZone.setText(detail.getZone());
+
         moreDetail = rootView.findViewById(R.id.textMoreDetail);
         moreDetail.setText(detail.getMoreDetail());
+
         imgMainDetail = rootView.findViewById(R.id.imgMainDetail);
-        Glide.with(getActivity()).load(detail.getImg().getUrl()).into(imgMainDetail);
+        setToImageView(detail.getImg().getUrl(), imgMainDetail);
+
         imageView1 = rootView.findViewById(R.id.imageDetail1);
-        Glide.with(getActivity()).load(detail.getImg().getUrl()).into(imageView1);
-        viewCapture = rootView.findViewById(R.id.viewCapture);
+        setToImageView(detail.getImg().getUrl(), imageView1);
+
         imageView2 = rootView.findViewById(R.id.imageDetail2);
-        Glide.with(getActivity()).load(detail.getImg().getUrl2()).into(imageView2);
+        setToImageView(detail.getImg().getUrl2(), imageView2);
+
         imageView3 = rootView.findViewById(R.id.imageDetail3);
-        Glide.with(getActivity()).load(detail.getImg().getUrl3()).into(imageView3);
+        setToImageView(detail.getImg().getUrl3(), imageView3);
+
         imageView4 = rootView.findViewById(R.id.imageDetail4);
-        Glide.with(getActivity()).load(detail.getImg().getUrl4()).into(imageView4);
+        setToImageView(detail.getImg().getUrl4(), imageView4);
+
         imageView5 = rootView.findViewById(R.id.imageDetail5);
-        Glide.with(getActivity()).load(detail.getImg().getUrl5()).into(imageView5);
+        setToImageView(detail.getImg().getUrl5(), imageView5);
+
         imageView6 = rootView.findViewById(R.id.imageDetail6);
-        Glide.with(getActivity()).load(detail.getImg().getUrl6()).into(imageView6);
+        setToImageView(detail.getImg().getUrl6(), imageView6);
 
+        viewCapture = rootView.findViewById(R.id.viewCapture);
 
-        btnShare = rootView.findViewById(R.id.btnShare);
+        btnShare = rootView.findViewById(R.id.linearShare);
         btnShare.setOnClickListener(this);
         return rootView;
     }
@@ -98,39 +109,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     public static void setDetail(Detail detail) {
         DetailFragment.detail = detail;
     }
-    private Bitmap getBitmapFromView(View view) {
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(returnedBitmap);
-        Drawable bgDrawable =view.getBackground();
-        if (bgDrawable!=null) {
-            //has background drawable, then draw it on the canvas
-            bgDrawable.draw(canvas);
-        }   else{
-            //does not have background drawable, then draw white background on the canvas
-            canvas.drawColor(Color.WHITE);
-        }
-        view.draw(canvas);
-        return returnedBitmap;
-    }
 
     @Override
     public void onClick(View view) {
         if (btnShare.getId() == view.getId()) {
-//            try {
-//                Bitmap bitmap = Screenshot.takescreenshotofRootView(viewCapture);
-//                viewCapture.setImageBitmap(bitmap);
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                byte[] byteArray = stream.toByteArray();
-//
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//                intent.setType("image/png");
-//                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(imgFile));
-//                startActivity(Intent.createChooser(intent, "share to..."));
-//
-//            } catch (Throwable e) {
-//
-//            }
             Bitmap bitmap = Screenshot.takescreenshotofRootView(viewCapture);
             try {
                 File file = new File(getActivity().getExternalCacheDir(), "logicchip.png");
@@ -147,8 +129,11 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
     }
+    private void setToImageView(String uri, ImageView imageView){
+        Glide.with(getActivity()).load(uri).into(imageView);
+    }
+
+
 }

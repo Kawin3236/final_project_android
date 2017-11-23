@@ -36,7 +36,7 @@ public class DetailSearchFragment extends Fragment {
     private ProgressDialog progressDialog;
     private ImageView addPost;
     private Detail detail;
-   private static String nameZone;
+    private static String nameZone;
 
     public DetailSearchFragment() {
         // Required empty public constructor

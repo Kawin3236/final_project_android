@@ -29,19 +29,17 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
     private ListView lv;
     private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
-    //private ImageView addPost;
     private Detail detail;
-    private Button btnSearch;
+
 
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     public static HomeFragment newInstance() {
@@ -55,8 +53,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        //addPost = rootView.findViewById(R.id.addPost);
-       // btnSearch = rootView.findViewById(R.id.btnSearch);
 
         imgList = new ArrayList<>();
         lv = (ListView) rootView.findViewById(R.id.listViewImage);
@@ -99,20 +95,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         this.detail = detail;
     }
 
-    @Override
-    public void onClick(View view) {
-//        if (addPost.getId() == view.getId()) {
-//            goToFragment(PostFragment.newInstance());
-//        } else
-            if (btnSearch.getId() == view.getId()) {
-            goToFragment(SearchFragment.newInstance());
-        }
-    }
-
-    private void goToFragment(Fragment fragment) {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
 }
