@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FB_Database_Path_User = "users";
     public static final int Request_Code = 1234;
 
-    private FirebaseAuth firebaseAuth;
+    //private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgList = findViewById(R.id.imgList);
         imgZone = findViewById(R.id.imgZone);
         imgAddPost = findViewById(R.id.imgAddPost);
-        firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseAuth = FirebaseAuth.getInstance();
         linearList.setOnClickListener(this);
         linearPost.setOnClickListener(this);
         linearZone.setOnClickListener(this);
@@ -144,15 +144,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void logout() {
-        firebaseAuth.signOut();
+        //firebaseAuth.signOut();
         LoginManager.getInstance().logOut();
-        goToActivity();
-        storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path_User);
-        databaseReference.child(uploadId).removeValue();
+
+        //storageReference = FirebaseStorage.getInstance().getReference();
+        //databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path_User);
+        //databaseReference.child(uploadId).removeValue();
         SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
         editor.commit();
+        goToActivity();
     }
 }

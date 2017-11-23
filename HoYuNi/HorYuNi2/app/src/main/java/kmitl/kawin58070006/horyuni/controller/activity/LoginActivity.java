@@ -15,6 +15,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private CallbackManager callbackManager;
     private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
+    //private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
     private User user;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String uploadId;
     public static final String FB_Database_Path_User = "users";
+    private AccessToken accessToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,11 @@ public class LoginActivity extends AppCompatActivity {
 //        if (getIntent().hasExtra("logout")){
 //            LoginManager.getInstance().logOut();
 //        }
+        accessToken = AccessToken.getCurrentAccessToken();
+
+        if (accessToken != null) {
+            connectionWithFacebook();
+        }
 
         loginButton = findViewById(R.id.loginButton);
         loginButton.setReadPermissions(Arrays.asList("email"));
@@ -64,7 +71,10 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccesToken(loginResult.getAccessToken());
+                //handleFacebookAccesToken(loginResult.getAccessToken());
+                connectionWithFacebook();
+
+
 
             }
 
@@ -78,46 +88,44 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "error login", Toast.LENGTH_SHORT).show();
             }
         });
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    Profile profile = Profile.getCurrentProfile();
-                    user = new User(uploadId, profile.getName(), profile.getProfilePictureUri(35, 35).toString());
-                    SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
-                    Editor editor = sharedpreferences.edit();
-                    editor.putString("uploadId", uploadId);
-                    editor.putString("username", profile.getName());
-                    editor.putString("uriProfile", profile.getProfilePictureUri(35,35).toString());
-                    editor.commit();
 
-                    goMainScreen(profile.getName(), profile.getProfilePictureUri(35, 35).toString(), uploadId);
-                }
-
-
-            }
-        };
     }
 
-    private void handleFacebookAccesToken(AccessToken accessToken) {
-        AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("กำลังโหลดข้อมูล");
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "firebase_error_login", Toast.LENGTH_SHORT).show();
-                        } else progressDialog.dismiss();
-                    }
-                });
+    private void connectionWithFacebook() {
+
+        //progress.show(getSupportFragmentManager(), "progress");
+        boolean isError = false;
+
+        try {
+            Profile profile = Profile.getCurrentProfile();
+            user = new User(uploadId, profile.getName(), profile.getProfilePictureUri(35, 35).toString());
+            SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
+            Editor editor = sharedpreferences.edit();
+            editor.putString("uploadId", uploadId);
+            editor.putString("username", profile.getName());
+            editor.putString("uriProfile", profile.getProfilePictureUri(35,35).toString());
+            editor.commit();
+
+            goMainScreen(profile.getName(), profile.getProfilePictureUri(35, 35).toString(), uploadId);
+
+
+        } catch (NullPointerException ex) {
+
+            Toast.makeText(LoginActivity.this, "กรุณาเชื่อมต่อ facebook อีกครั้ง", Toast.LENGTH_SHORT).show();
+            isError = true;
+        } catch (Exception ex) {
+
+            Toast.makeText(LoginActivity.this, "กรุณาเชื่อมต่อ facebook อีกครั้ง", Toast.LENGTH_SHORT).show();
+            isError = true;
+        }
+
+        if(isError){
+            LoginManager.getInstance().logOut();
+            //progress.dismiss();
+        }
     }
+
+
 
     private void goMainScreen(String username, String uriProfile, String uploadId) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -138,12 +146,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(firebaseAuthListener);
+        //firebaseAuth.addAuthStateListener(firebaseAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+        //firebaseAuth.removeAuthStateListener(firebaseAuthListener);
     }
 }
