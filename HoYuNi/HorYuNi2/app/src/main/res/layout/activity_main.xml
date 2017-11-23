@@ -6,10 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF14E4E"
+    android:background="#1a1919"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="kmitl.kawin58070006.horyuni.MainActivity">
 
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="10"></FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,32 +25,48 @@
         android:weightSum="2">
 
 
-            <Button
-                android:id="@+id/btnHome"
+        <TextView
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="List"
+            android:textAlignment="center"
+            android:textColor="#5eb4aa"
+            android:textSize="15dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#5eb4aa"
-                android:text="list"
-                android:textColor="#fff" />
+                android:background="#fff"
+                android:src="@mipmap/ic_apps_black_24dp"
+                />
 
-
-            <Button
+            <TextView
                 android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#3a7069"
+                android:background="#ffffff"
+                android:gravity="center"
                 android:text="Zone"
-                android:textColor="#fff" />
+                android:textAlignment="center"
+                android:textColor="#d1d0d0"
+                android:textSize="15dp" />
 
+        </LinearLayout>
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_marginTop="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
-
-
 </LinearLayout>

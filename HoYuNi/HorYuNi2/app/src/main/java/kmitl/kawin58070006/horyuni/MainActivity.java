@@ -1,6 +1,8 @@
 package kmitl.kawin58070006.horyuni;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -21,8 +24,19 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.Collections;
+
+import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.model.ImageUpload;
+import kmitl.kawin58070006.horyuni.model.User;
 
 import static android.graphics.Color.parseColor;
 
@@ -30,16 +44,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
+    private SharedPreferences sharedPreferences;
     private ImageView imageView;
     private EditText editText;
     private Uri imguri;
-    private Button btnSearchList;
-    private Button btnSearchZone;
-    private String username;
+    private TextView btnSearchList;
+    private TextView btnSearchZone;
+    private String username = "";
     private String uriProfile;
+    private String uploadId;
     public static final String FB_Storage_Path = "image/";
     public static final String FB_Database_Path = "post";
+    public static final String FB_Database_Path_User = "users";
     public static final int Request_Code = 1234;
+    private User user;
 
     private FirebaseAuth firebaseAuth;
 
@@ -48,8 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-
-
+        SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
+        uploadId = sharedpreferences.getString("uploadId", "");
+        username = sharedpreferences.getString("username", "");
+        uriProfile= sharedpreferences.getString("uriProfile", "");
 
         btnSearchList = findViewById(R.id.btnHome);
         btnSearchZone = findViewById(R.id.btnSearch);
@@ -61,12 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //initialFragment();
 
         } else {
-            Intent intent = getIntent();
-            username = intent.getStringExtra("username");
-            uriProfile = intent.getStringExtra("uriProfile");
             initialFragment();
+
+
         }
-        Toast.makeText(getApplicationContext(),"Main : "+username+" >>> "+uriProfile, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Main : " + username + " >>> " + uploadId, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -95,7 +114,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, PostFragment.newInstance(username, uriProfile))
                     .addToBackStack(null)
+
                     .commit();
+        }
+        if (id == R.id.id_zone) {
+            goToFragment(SearchFragment.newInstance());
         }
         return true;
     }
@@ -103,13 +126,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (btnSearchList.getId() == view.getId()) {
-            btnSearchList.setBackgroundColor(parseColor("#5eb4aa"));
-            btnSearchZone.setBackgroundColor(parseColor("#3a7069"));
+            btnSearchList.setTextColor(parseColor("#5eb4aa"));
+            btnSearchZone.setTextColor(parseColor("#d1d0d0"));
             goToFragment(HomeFragment.newInstance());
         } else if (btnSearchZone.getId() == view.getId()) {
 
-            btnSearchZone.setBackgroundColor(parseColor("#5eb4aa"));
-            btnSearchList.setBackgroundColor(parseColor("#3a7069"));
+            btnSearchZone.setTextColor(parseColor("#5eb4aa"));
+            btnSearchList.setTextColor(parseColor("#d1d0d0"));
             goToFragment(SearchFragment.newInstance());
         }
     }
@@ -133,6 +156,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth.signOut();
         LoginManager.getInstance().logOut();
         goToActivity();
-
+        storageReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference(FB_Database_Path_User);
+        databaseReference.child(uploadId).removeValue();
+        SharedPreferences sharedpreferences = getSharedPreferences("shareUploadId", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.commit();
     }
 }
