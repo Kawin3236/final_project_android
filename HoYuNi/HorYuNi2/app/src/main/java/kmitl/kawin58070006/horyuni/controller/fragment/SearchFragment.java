@@ -111,18 +111,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private void countZone(String zone, final TextView numZone) {
         mDatabaseRef.orderByChild("zone").equalTo(zone).addValueEventListener(new ValueEventListener() {
             int num = 0;
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     num++;
-                    numZone.setText(String.valueOf(num));
                 }
+                numZone.setText(String.valueOf(num));
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println(":::::::1111111");
             }
         });
     }
@@ -133,7 +130,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         if (zoneK1.getId() == v.getId()) {
             goToDetail("เกกี1", numK1);
         } else if (zoneK2.getId() == v.getId()) {
-            goToDetail("เกกี่2", numK2);
+            goToDetail("เกกี2", numK2);
         } else if (zoneK3.getId() == v.getId()) {
             goToDetail("เกกี3", numK3);
         } else if (zoneWP.getId() == v.getId()) {

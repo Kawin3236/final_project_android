@@ -14,12 +14,12 @@
         android:layout_width="384dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/comment" />
+        android:background="#ffffff"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#51000000" />
+        android:background="#2a000000" />
 
     <TextView
         android:id="@+id/textDate"
@@ -89,7 +89,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@mipmap/add"
+        android:src="@drawable/ic_home_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
@@ -108,6 +108,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="null"
+        android:textSize="15sp"
         android:textAlignment="textStart"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"

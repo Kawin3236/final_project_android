@@ -3,6 +3,7 @@ package kmitl.kawin58070006.horyuni.controller.fragment;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,12 +60,12 @@ public class PostFragment extends Fragment {
     private ImageView imageView6;
     private EditText dormitoryName;
     private EditText editTextMoreDetai;
-    private Uri imguri1;
-    private Uri imguri2;
-    private Uri imguri3;
-    private Uri imguri4;
-    private Uri imguri5;
-    private Uri imguri6;
+    private Uri imgUri1;
+    private Uri imgUri2;
+    private Uri imgUri3;
+    private Uri imgUri4;
+    private Uri imgUri5;
+    private Uri imgUri6;
     private Button btnUpload;
     private int check;
     private int dismissCheck;
@@ -95,7 +97,9 @@ public class PostFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
     private String date;
+    private int selectImg = 0;
 
+    private StorageReference ref;
 
     public PostFragment() {
         // Required empty public constructor
@@ -119,7 +123,6 @@ public class PostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_post, container, false);
-        Toast.makeText(getContext(), "This is a: " + username, Toast.LENGTH_SHORT).show();
         imageView = (ImageView) rootView.findViewById(R.id.imageView);
         imageView2 = (ImageView) rootView.findViewById(R.id.imageView2);
         imageView3 = (ImageView) rootView.findViewById(R.id.imageView3);
@@ -188,18 +191,26 @@ public class PostFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (listUri.size() > 0 && !dormitoryName.getText().toString().isEmpty() && !editTextMoreDetai.getText().toString().isEmpty()) {
-                    for (Uri imgUri : listUri) {
-                        if (imgUri != null) {
-                            StorageReference ref = storageReference.child(FB_Storage_Path + System.currentTimeMillis() + "." + getImageExt(imgUri));
-                            storageReferencesList.add(ref);
-                        }
-                    }
+                if (selectImg > 0 && !dormitoryName.getText().toString().isEmpty() && !editTextMoreDetai.getText().toString().isEmpty()) {
+                    if (imgUri1 != null) addToStorage(imgUri1);
+                    if (imgUri2 != null) addToStorage(imgUri2);
+                    if (imgUri3 != null) addToStorage(imgUri3);
+                    if (imgUri4 != null) addToStorage(imgUri4);
+                    if (imgUri5 != null) addToStorage(imgUri5);
+                    if (imgUri6 != null) addToStorage(imgUri6);
+
                     dialog = new ProgressDialog(getActivity());
-                    dialog.setMessage("Please wait for upload...");
+                    dialog.setMessage("กำลังอัพโหลดโพสต์");
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.setCancelable(false);
+                    dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent event) {
+                            if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP){}
+                            return true;
+                        }
+                    });
                     //Add file to reference
                     for (int i = 0; i < storageReferencesList.size(); i++) {
                         storageReferencesList.get(i).putFile(listUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -219,7 +230,7 @@ public class PostFragment extends Fragment {
                                     else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
                                         imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
                                     else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username,  getDateTime(),dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
+                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
 
                                     //Save image info in to firebase database
                                     String uploadId = databaseReference.push().getKey();
@@ -265,17 +276,23 @@ public class PostFragment extends Fragment {
         PostFragment.username = username;
     }
 
+    public void addToStorage(Uri uri) {
+        ref = storageReference.child(FB_Storage_Path + System.currentTimeMillis() + "." + getImageExt(uri));
+        storageReferencesList.add(ref);
+        listUri.add(uri);
+    }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
 
         if (requestCode == Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri1 = data.getData();
-            listUri.add(imguri1);
-
+            imgUri1 = data.getData();
+            selectImg++;
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri1);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri1);
                 imageView.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -284,11 +301,10 @@ public class PostFragment extends Fragment {
             }
         }
         if (requestCode == Request_Code2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri2 = data.getData();
-            listUri.add(imguri2);
-
+            imgUri2 = data.getData();
+            selectImg++;
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri2);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri2);
                 imageView2.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -297,11 +313,11 @@ public class PostFragment extends Fragment {
             }
         }
         if (requestCode == Request_Code3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri3 = data.getData();
-            listUri.add(imguri3);
+            imgUri3 = data.getData();
+            selectImg++;
 
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri3);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri3);
                 imageView3.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -310,11 +326,10 @@ public class PostFragment extends Fragment {
             }
         }
         if (requestCode == Request_Code4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri4 = data.getData();
-            listUri.add(imguri4);
-
+            imgUri4 = data.getData();
+            selectImg++;
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri4);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri4);
                 imageView4.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -323,11 +338,10 @@ public class PostFragment extends Fragment {
             }
         }
         if (requestCode == Request_Code5 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri5 = data.getData();
-            listUri.add(imguri5);
-
+            imgUri5 = data.getData();
+            selectImg++;
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri5);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri5);
                 imageView5.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -336,11 +350,10 @@ public class PostFragment extends Fragment {
             }
         }
         if (requestCode == Request_Code6 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imguri6 = data.getData();
-            listUri.add(imguri6);
-
+            imgUri6 = data.getData();
+            selectImg++;
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imguri6);
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri6);
                 imageView6.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -364,7 +377,8 @@ public class PostFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select image"), Request_Code);
     }
-    public String getDateTime(){
+
+    public String getDateTime() {
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
         date = simpleDateFormat.format(calendar.getTime());

@@ -1,11 +1,14 @@
 package kmitl.kawin58070006.horyuni.controller.fragment;
 
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +110,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         if (btnShare.getId() == view.getId()) {
             Bitmap bitmap = Screenshot.takescreenshotofRootView(viewCapture);
             try {
+
                 File file = new File(getActivity().getExternalCacheDir(), "logicchip.png");
                 FileOutputStream fOut = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);

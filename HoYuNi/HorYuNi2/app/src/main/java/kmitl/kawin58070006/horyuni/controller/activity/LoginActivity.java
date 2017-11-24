@@ -37,45 +37,28 @@ import static android.content.SharedPreferences.*;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginButton loginButton;
-    private SharedPreferences sharedPreferences;
     private CallbackManager callbackManager;
-    private ProgressDialog progressDialog;
-    //private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
-
     private User user;
-    private StorageReference storageReference;
-    private DatabaseReference databaseReference;
     private String uploadId;
-    public static final String FB_Database_Path_User = "users";
     private AccessToken accessToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         callbackManager = CallbackManager.Factory.create();
-//        if (getIntent().hasExtra("logout")){
-//            LoginManager.getInstance().logOut();
-//        }
         accessToken = AccessToken.getCurrentAccessToken();
-
         if (accessToken != null) {
             connectionWithFacebook();
         }
 
         loginButton = findViewById(R.id.loginButton);
         loginButton.setReadPermissions(Arrays.asList("email"));
-
-
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //handleFacebookAccesToken(loginResult.getAccessToken());
                 connectionWithFacebook();
-
-
-
             }
 
             @Override
@@ -92,10 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void connectionWithFacebook() {
-
-        //progress.show(getSupportFragmentManager(), "progress");
         boolean isError = false;
-
         try {
             Profile profile = Profile.getCurrentProfile();
             user = new User(uploadId, profile.getName(), profile.getProfilePictureUri(35, 35).toString());
@@ -103,12 +83,9 @@ public class LoginActivity extends AppCompatActivity {
             Editor editor = sharedpreferences.edit();
             editor.putString("uploadId", uploadId);
             editor.putString("username", profile.getName());
-            editor.putString("uriProfile", profile.getProfilePictureUri(35,35).toString());
+            editor.putString("uriProfile", profile.getProfilePictureUri(35, 35).toString());
             editor.commit();
-
             goMainScreen(profile.getName(), profile.getProfilePictureUri(35, 35).toString(), uploadId);
-
-
         } catch (NullPointerException ex) {
 
             Toast.makeText(LoginActivity.this, "กรุณาเชื่อมต่อ facebook อีกครั้ง", Toast.LENGTH_SHORT).show();
@@ -118,13 +95,10 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "กรุณาเชื่อมต่อ facebook อีกครั้ง", Toast.LENGTH_SHORT).show();
             isError = true;
         }
-
-        if(isError){
+        if (isError) {
             LoginManager.getInstance().logOut();
-            //progress.dismiss();
         }
     }
-
 
 
     private void goMainScreen(String username, String uriProfile, String uploadId) {
@@ -146,12 +120,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //firebaseAuth.addAuthStateListener(firebaseAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //firebaseAuth.removeAuthStateListener(firebaseAuthListener);
     }
 }
