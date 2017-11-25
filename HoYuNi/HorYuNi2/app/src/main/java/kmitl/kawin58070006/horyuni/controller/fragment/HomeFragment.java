@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        imgList = new ArrayList<>();
+
         lv = (ListView) rootView.findViewById(R.id.listViewImage);
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
@@ -71,24 +71,33 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+        imgList = new ArrayList<>();
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(MainActivity.FB_Database_Path);
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
+                imgList.clear();
                 //Fetch image data from firebase database
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     //ImageUpload class require default constructor
+
                     ImageUpload img = snapshot.getValue(ImageUpload.class);
                     imgList.add(img);
                 }
                 //Init adapter
-                Collections.reverse(imgList);
-                if (getActivity()!=null) {
-                    adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
-                    //Set adapter for listview
-                    lv.setAdapter(adapter);
-                }
+               try {
+                   Collections.reverse(imgList);
+
+                   if (getActivity() != null) {
+                       adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
+                       //Set adapter for listview
+                       lv.setAdapter(adapter);
+                   }
+               }catch (Exception e){
+
+               }
             }
 
             @Override

@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import kmitl.kawin58070006.horyuni.R;
 import kmitl.kawin58070006.horyuni.controller.fragment.HomeFragment;
+import kmitl.kawin58070006.horyuni.controller.fragment.MyPostFragment;
 import kmitl.kawin58070006.horyuni.controller.fragment.PostFragment;
 import kmitl.kawin58070006.horyuni.controller.fragment.SearchFragment;
 
@@ -128,17 +129,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void dialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setItems(new CharSequence[]{"ออกจากระบบ", "ยกเลิก"},
+        builder.setItems(new CharSequence[]{"โพสต์ของฉัน", "ออกจากระบบ", "ยกเลิก"},
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
+                                goToFragment(MyPostFragment.newInstance(username));
+                                break;
+                            case 1:
                                 logout();
                                 dialog.dismiss();
                                 break;
-                            case 1:
+                            case 2:
                                 dialog.dismiss();
-                                break;
                         }
                     }
                 });

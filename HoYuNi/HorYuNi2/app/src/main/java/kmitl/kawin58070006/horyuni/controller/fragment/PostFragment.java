@@ -218,22 +218,23 @@ public class PostFragment extends Fragment {
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 try {
                                     check++;
+                                    String uploadId = databaseReference.push().getKey();
                                     listUriString.add(taskSnapshot.getDownloadUrl().toString());
                                     if (storageReferencesList.size() == 1 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username.toString(), getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username.toString(), getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0));
                                     else if (storageReferencesList.size() == 2 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1));
                                     else if (storageReferencesList.size() == 3 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2));
                                     else if (storageReferencesList.size() == 4 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3));
                                     else if (storageReferencesList.size() == 5 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4));
                                     else if (storageReferencesList.size() == 6 && check == storageReferencesList.size())
-                                        imageUpload = new ImageUpload(uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
+                                        imageUpload = new ImageUpload(uploadId, uriProfile.toString(), username, getDateTime(), dormitoryName.getText().toString(), zone, editTextMoreDetai.getText().toString(), listUriString.get(0), listUriString.get(1), listUriString.get(2), listUriString.get(3), listUriString.get(4), listUriString.get(5));
 
                                     //Save image info in to firebase database
-                                    String uploadId = databaseReference.push().getKey();
+
                                     databaseReference.child(uploadId).setValue(imageUpload);
                                 } catch (Exception e) {
                                     Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -261,7 +262,7 @@ public class PostFragment extends Fragment {
                     }
 
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragmentContainer, HomeFragment.newInstance())
+                            .replace(R.id.fragmentContainer, HomeFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
                 } else {
@@ -380,7 +381,7 @@ public class PostFragment extends Fragment {
 
     public String getDateTime() {
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+        simpleDateFormat = new SimpleDateFormat("dd-MM-yyy HH:mm");
         date = simpleDateFormat.format(calendar.getTime());
         return date;
     }

@@ -22,46 +22,42 @@ import java.util.List;
 
 import kmitl.kawin58070006.horyuni.R;
 import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.adapter.MyPostAdapter;
 import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailSearchFragment extends Fragment {
+public class MyPostFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
     private ListView lv;
-    private ImageListAdapter adapter;
+    private MyPostAdapter adapter;
     private ProgressDialog progressDialog;
-    private ImageView addPost;
-    private Detail detail;
-    private static String nameZone;
 
-    public DetailSearchFragment() {
+
+    private static String username;
+
+    public MyPostFragment() {
         // Required empty public constructor
     }
 
-    public static DetailSearchFragment newInstance(String zone) {
+    public static MyPostFragment newInstance(String username) {
 
         Bundle args = new Bundle();
-        setZone(zone);
-        DetailSearchFragment fragment = new DetailSearchFragment();
+        setUsername(username);
+        MyPostFragment fragment = new MyPostFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public static void setZone(String zone) {
-        DetailSearchFragment.nameZone = zone;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_detail_search, container, false);
-
+        View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
         imgList = new ArrayList<>();
         lv = (ListView) rootView.findViewById(R.id.listViewImage2);
         //Show progress dialog during list image loading
@@ -70,11 +66,11 @@ public class DetailSearchFragment extends Fragment {
         progressDialog.show();
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(MainActivity.FB_Database_Path);
-        mDatabaseRef.orderByChild("zone").equalTo(nameZone).addValueEventListener(new ValueEventListener() {
+        mDatabaseRef.orderByChild("username").equalTo(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
-
+                imgList.clear();
                 //Fetch image data from firebase database
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     //ImageUpload class require default constructor
@@ -83,7 +79,7 @@ public class DetailSearchFragment extends Fragment {
                 }
                 //Init adapter
                 Collections.reverse(imgList);
-                adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
+                adapter = new MyPostAdapter(getActivity(), R.layout.my_image_item, imgList, getActivity());
                 //Set adapter for listview
                 lv.setAdapter(adapter);
             }
@@ -96,6 +92,10 @@ public class DetailSearchFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public static void setUsername(String username) {
+        MyPostFragment.username = username;
     }
 
 }
