@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import kmitl.kawin58070006.horyuni.R;
-import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.adapter.PostAdapter;
 import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
@@ -34,8 +36,7 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 public class HomeFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
-    private ListView lv;
-    private ImageListAdapter adapter;
+
     private ProgressDialog progressDialog;
     private Detail detail;
 
@@ -54,10 +55,10 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        lv = (ListView) rootView.findViewById(R.id.listViewImage);
+        //lv = (ListView) rootView.findViewById(R.id.listViewImage);
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("กำลังโหลดข้อมูล");
@@ -91,9 +92,14 @@ public class HomeFragment extends Fragment {
                    Collections.reverse(imgList);
 
                    if (getActivity() != null) {
-                       adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
+                       //adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
                        //Set adapter for listview
-                       lv.setAdapter(adapter);
+                       PostAdapter postAdaptet = new PostAdapter(getActivity(), getActivity());
+                       postAdaptet.setData(imgList);
+                       RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.listViewImage);
+                       recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                       //lv.setAdapter(adapter);
+                       recyclerView.setAdapter(postAdaptet);
                    }
                }catch (Exception e){
 

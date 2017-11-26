@@ -134,6 +134,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
+                                imgAddPost.setImageResource(R.drawable.ic_add_black);
+                                imgZone.setImageResource(R.drawable.ic_lotion_on_black);
+                                imgList.setImageResource(R.drawable.ic_action_name);
                                 goToFragment(MyPostFragment.newInstance(username));
                                 break;
                             case 1:

@@ -4,11 +4,11 @@ package kmitl.kawin58070006.horyuni.controller.fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,10 +21,8 @@ import java.util.Collections;
 import java.util.List;
 
 import kmitl.kawin58070006.horyuni.R;
-import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
-import kmitl.kawin58070006.horyuni.adapter.MyPostAdapter;
+import kmitl.kawin58070006.horyuni.adapter.MyPostItemAdapter;
 import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
-import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
 
 /**
@@ -33,8 +31,7 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 public class MyPostFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
-    private ListView lv;
-    private MyPostAdapter adapter;
+
     private ProgressDialog progressDialog;
 
 
@@ -57,9 +54,9 @@ public class MyPostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
         imgList = new ArrayList<>();
-        lv = (ListView) rootView.findViewById(R.id.listViewImage2);
+
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait loading list image...");
@@ -79,9 +76,12 @@ public class MyPostFragment extends Fragment {
                 }
                 //Init adapter
                 Collections.reverse(imgList);
-                adapter = new MyPostAdapter(getActivity(), R.layout.my_image_item, imgList, getActivity());
-                //Set adapter for listview
-                lv.setAdapter(adapter);
+
+                MyPostItemAdapter postAdaptet = new MyPostItemAdapter(getActivity(), getActivity());
+                postAdaptet.setData(imgList);
+                RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.listViewImage2);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(postAdaptet);
             }
 
             @Override

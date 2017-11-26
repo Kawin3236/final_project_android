@@ -207,7 +207,8 @@ public class PostFragment extends Fragment {
                     dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                         @Override
                         public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent event) {
-                            if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP){}
+                            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                            }
                             return true;
                         }
                     });

@@ -4,6 +4,8 @@ package kmitl.kawin58070006.horyuni.controller.fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import kmitl.kawin58070006.horyuni.R;
-import kmitl.kawin58070006.horyuni.adapter.ImageListAdapter;
+import kmitl.kawin58070006.horyuni.adapter.PostAdapter;
 import kmitl.kawin58070006.horyuni.controller.activity.MainActivity;
 import kmitl.kawin58070006.horyuni.model.Detail;
 import kmitl.kawin58070006.horyuni.model.ImageUpload;
@@ -33,11 +35,7 @@ import kmitl.kawin58070006.horyuni.model.ImageUpload;
 public class DetailSearchFragment extends Fragment {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
-    private ListView lv;
-    private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
-    private ImageView addPost;
-    private Detail detail;
     private static String nameZone;
 
     public DetailSearchFragment() {
@@ -60,10 +58,10 @@ public class DetailSearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_detail_search, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_detail_search, container, false);
 
         imgList = new ArrayList<>();
-        lv = (ListView) rootView.findViewById(R.id.listViewImage2);
+
         //Show progress dialog during list image loading
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait loading list image...");
@@ -83,9 +81,12 @@ public class DetailSearchFragment extends Fragment {
                 }
                 //Init adapter
                 Collections.reverse(imgList);
-                adapter = new ImageListAdapter(getActivity(), R.layout.image_item, imgList, getActivity());
-                //Set adapter for listview
-                lv.setAdapter(adapter);
+
+                PostAdapter postAdaptet = new PostAdapter(getActivity(), getActivity());
+                postAdaptet.setData(imgList);
+                RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.listViewImage3);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(postAdaptet);
             }
 
             @Override
