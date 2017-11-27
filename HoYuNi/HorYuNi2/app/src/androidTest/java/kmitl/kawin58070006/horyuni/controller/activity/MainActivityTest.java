@@ -2,6 +2,7 @@ package kmitl.kawin58070006.horyuni.controller.activity;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
@@ -23,12 +24,18 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.isDialog;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.Matchers.is;
@@ -52,7 +59,7 @@ public class MainActivityTest {
 
     @Test
     public void ViewDetailTest() {
-        SystemClock.sleep(1000);
+        SystemClock.sleep(3000);
         onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
         onView(withId(R.id.listViewImage)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.btn_detail)));
@@ -63,7 +70,7 @@ public class MainActivityTest {
 
     @Test
     public void ViewMyPostDetailTest() {
-        SystemClock.sleep(1000);
+        SystemClock.sleep(3000);
         onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
         SystemClock.sleep(1000);
         onView(allOf(withId(R.id.imgProfile))).perform(click());
@@ -78,7 +85,7 @@ public class MainActivityTest {
 
     @Test
     public void ViewZoneTest() {
-        SystemClock.sleep(1000);
+        SystemClock.sleep(3000);
         onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
         onView(withId(R.id.linearZone)).perform(click());
         onView(withId(R.id.ZoneK1)).perform(click());
@@ -95,10 +102,50 @@ public class MainActivityTest {
         pressBack();
         onView(withId(R.id.ZonePapaMama)).perform(click());
         onView(withId(R.id.ZoneKS)).perform(click());
-
+        SystemClock.sleep(1000);
         onView(allOf(withId(R.id.imgProfile))).perform(click());
         onView(withText("ออกจากระบบ")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
     }
+
+    @Test
+    public void PostTest() {
+        SystemClock.sleep(3000);
+        onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
+        SystemClock.sleep(1000);
+        onView(withId(R.id.linearPost)).perform(click());
+        SystemClock.sleep(1000);
+        onView(withId(R.id.linearList)).perform(click());
+        onView(withId(R.id.linearPost)).perform(click());
+        onView(withId(R.id.editName)).perform( replaceText("เทส"), closeSoftKeyboard());
+
+        onView(withId(R.id.editMoreDetail)).perform(scrollTo(), replaceText("เทส"));
+        SystemClock.sleep(2000);
+        onView(withId(R.id.btnUpload)).perform(click());
+        SystemClock.sleep(1000);
+        onView(allOf(withId(R.id.imgProfile))).perform(click());
+        onView(withText("ออกจากระบบ")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
+    }
+
+    @Test
+    public void DeletePostTest() {
+        SystemClock.sleep(3000);
+        onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
+        onView(allOf(withId(R.id.imgProfile))).perform(click());
+        onView(withText("โพสต์ของฉัน")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
+        onView(withId(R.id.listViewImage2)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.btn_detail)));
+        pressBack();
+        onView(withId(R.id.listViewImage2)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.btnDelete)));
+        onView(withText("ยกเลิก")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
+        onView(withId(R.id.listViewImage2)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.btnDelete)));
+        onView(withText("ลบ")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
+        SystemClock.sleep(1000);
+        onView(allOf(withId(R.id.imgProfile))).perform(click());
+        onView(withText("ออกจากระบบ")).inRoot(isDialog()).check(matches(isDisplayed())).perform(click());
+    }
+
 
 
 
