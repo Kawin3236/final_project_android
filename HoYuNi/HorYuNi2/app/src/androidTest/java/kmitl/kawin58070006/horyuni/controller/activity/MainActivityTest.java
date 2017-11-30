@@ -87,17 +87,19 @@ public class MainActivityTest {
     public void ViewZoneTest() {
         SystemClock.sleep(3000);
         onView(allOf(withId(R.id.loginButton), withText("Continue with Facebook"))).perform(click());
+        SystemClock.sleep(1000);
         onView(withId(R.id.linearZone)).perform(click());
         onView(withId(R.id.ZoneK1)).perform(click());
+
         pressBack();
         onView(withId(R.id.ZoneK2)).perform(click());
         onView(withId(R.id.ZoneK3)).perform(click());
         onView(withId(R.id.ZoneWP)).perform(click());
-        pressBack();
         onView(withId(R.id.ZoneKJL)).perform(click());
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.ZoneHM)).perform(click());
-        pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.ZoneRNP)).perform(click());
         pressBack();
         onView(withId(R.id.ZonePapaMama)).perform(click());

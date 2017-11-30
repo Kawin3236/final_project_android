@@ -136,12 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 imgAddPost.setImageResource(R.drawable.ic_add_black);
                                 imgZone.setImageResource(R.drawable.ic_lotion_on_black);
                                 imgList.setImageResource(R.drawable.ic_action_name);
-                                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                                    getSupportFragmentManager().beginTransaction()
-                                            .add(R.id.fragmentContainer, MyPostFragment.newInstance(username))
-                                            .addToBackStack(null)
-                                            .commit();
-                                }
+                                getSupportFragmentManager().beginTransaction()
+                                        .add(R.id.fragmentContainer, MyPostFragment.newInstance(username))
+                                        .addToBackStack(null)
+                                        .commit();
                                 break;
                             case 1:
                                 logout();
