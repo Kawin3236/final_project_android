@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    android:gravity="center"
     android:padding="5dp">
 
 
@@ -33,7 +34,7 @@
 
             <View
                 android:id="@+id/view"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
 
                 android:background="#2a000000"
@@ -60,6 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.096"
                 tools:ignore="MissingConstraints" />
+
 
             <TextView
                 android:id="@+id/tvImageName"
